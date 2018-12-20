@@ -1,0 +1,12 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- 手机状态栏的颜色 -->
+        <item name="colorPrimaryDark">@android:color/black</item>
+        <!-- 控件选中后的颜色 -->
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/windowBackground</item>
+    </style>
+
+</resources>
