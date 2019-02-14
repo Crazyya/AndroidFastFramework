@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">YoriZFramework</string>
+    <string name="error_text_name">ErrorMessage</string>
 </resources>
