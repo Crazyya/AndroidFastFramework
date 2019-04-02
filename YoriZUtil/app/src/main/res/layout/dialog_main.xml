@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/MatchWrap"
+    android:id="@+id/cv"
+    app:cardBackgroundColor="@android:color/white"
+    android:orientation="vertical"
+    app:cardCornerRadius="20dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/MatchMatch">
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/MatchWrap"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/msg"
+            style="@style/MatchWrap"
+            android:padding="18dp"
+            app:layout_constraintEnd_toEndOf="@+id/title"
+            app:layout_constraintStart_toStartOf="@+id/title"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
+
+
+        <Button
+            android:id="@+id/yes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="0.25dp"
+            android:layout_weight="1"
+            android:text="@string/yes"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/no"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/msg" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="0dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintBottom_toBottomOf="@+id/yes"
+            app:layout_constraintEnd_toStartOf="@+id/no"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/yes"
+            app:layout_constraintTop_toTopOf="@+id/yes" />
+
+
+        <Button
+            android:id="@+id/no"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0.25dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:text="@string/no"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/yes"
+            app:layout_constraintTop_toBottomOf="@+id/msg" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

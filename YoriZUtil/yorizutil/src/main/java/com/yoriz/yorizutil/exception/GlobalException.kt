@@ -2,14 +2,16 @@ package com.yoriz.yorizutil.exception
 
 import android.app.Activity
 import android.os.Environment
+import com.yoriz.yorizutil.BaseApplication
 import com.yoriz.yorizutil.R
-import com.yoriz.yorizutil.MyApplication
 import java.io.PrintWriter
 import java.io.StringWriter
 
 /**
  * Created by yoriz
  * on 2018/12/18 2:52 PM.
+ *
+ * 错误处理类，所有异常信息会写成文本
  */
 class GlobalException private constructor() : Thread.UncaughtExceptionHandler {
 
@@ -17,7 +19,7 @@ class GlobalException private constructor() : Thread.UncaughtExceptionHandler {
 
     companion object {
         @JvmStatic
-        val crashFileName = "${MyApplication.instance().getString(R.string.error_text_name)}.txt"
+        val crashFileName = "${BaseApplication.instance.getString(R.string.error_text_name)}.txt"
 
         private var instance: GlobalException? = null
 
@@ -69,7 +71,7 @@ class GlobalException private constructor() : Thread.UncaughtExceptionHandler {
             ex.printStackTrace(printWriter)
             printWriter.close()
             val result = writer.toString()
-            val outputStream = MyApplication.instance().applicationContext.openFileOutput(crashFileName, Activity.MODE_APPEND)
+            val outputStream = BaseApplication.instance.applicationContext.openFileOutput(crashFileName, Activity.MODE_APPEND)
             outputStream.write(result.toByteArray())
             outputStream.flush()
             outputStream.close()

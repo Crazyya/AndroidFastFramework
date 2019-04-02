@@ -1,6 +1,7 @@
 package com.yoriz.yorizutil.recycler
 
 import android.util.SparseArray
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +18,7 @@ class UniversalViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
          * 获得ViewHolder
          */
         fun getViewHolder(parent: ViewGroup, layoutId: Int): UniversalViewHolder {
-            return UniversalViewHolder(View.inflate(parent.context, layoutId, null))
+            return UniversalViewHolder(LayoutInflater.from(parent.context).inflate(layoutId, parent, false))
         }
     }
 

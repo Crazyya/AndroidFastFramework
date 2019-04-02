@@ -18,7 +18,7 @@ class ExampleUnitTest {
 
         companion object {
 
-            fun foo(){
+            fun foo() {
                 println("扩展方法")
             }
 
@@ -33,5 +33,21 @@ class ExampleUnitTest {
             C.foo()
             C().foo()
         }
+    }
+
+    @Test
+    fun insertSort() {
+        val a = intArrayOf(5, 2, 7, 1, 23, 15, 9, 34, 6, 8, 13)
+        for (i in 0 until a.size) {
+            for (j in 0 until a.size - i) {
+                if (j + 1 > a.size - 1) continue
+                if (a[j] > a[j + 1]) {
+                    val temp = a[j]
+                    a[j] = a[j + 1]
+                    a[j + 1] = temp
+                }
+            }
+        }
+        println(a.toString())
     }
 }

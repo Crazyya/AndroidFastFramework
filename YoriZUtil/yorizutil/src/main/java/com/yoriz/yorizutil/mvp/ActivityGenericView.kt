@@ -1,6 +1,6 @@
 package com.yoriz.yorizutil.mvp
 
-import com.yoriz.yorizutil.ToastUtil
+import com.yoriz.yorizutil.YoriToast
 
 /**
  * Created by yoriz
@@ -23,7 +23,7 @@ interface ActivityGenericView {
      * 调用toast工具弹提示
      */
     fun showPrompt(msg: String) {
-        ToastUtil.showShortToast(msg)
+        YoriToast.showShortToast(msg)
     }
 
     /**

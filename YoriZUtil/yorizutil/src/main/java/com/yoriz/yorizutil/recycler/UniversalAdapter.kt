@@ -8,14 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
  * on 2019/2/20 3:40 PM.
  */
 class UniversalAdapter<T> : RecyclerView.Adapter<UniversalViewHolder> {
-    var mData: ArrayList<T>
+    var mData: List<T>
     private var mOnBindInterface: OnBindDataInterface<T>
     private var mOnMultiTypeBindDataInterface: OnMultiTypeBindDataInterface<T>? = null
 
     /**
      * 单种ViewHolder的初始化方法
      */
-    constructor(data: ArrayList<T>, bindInterface: OnBindDataInterface<T>) {
+    constructor(data: List<T>, bindInterface: OnBindDataInterface<T>) {
         this.mData = data
         this.mOnBindInterface = bindInterface
     }
@@ -23,7 +23,7 @@ class UniversalAdapter<T> : RecyclerView.Adapter<UniversalViewHolder> {
     /**
      * 支持多类型ViewHolder的初始化方法
      */
-    constructor(data: ArrayList<T>, bindInterface: OnMultiTypeBindDataInterface<T>) {
+    constructor(data: List<T>, bindInterface: OnMultiTypeBindDataInterface<T>) {
         this.mData = data
         this.mOnBindInterface = bindInterface
         this.mOnMultiTypeBindDataInterface = bindInterface

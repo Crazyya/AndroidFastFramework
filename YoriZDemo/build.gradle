@@ -6,11 +6,12 @@ buildscript {
     ext.dokka_version = '0.9.17'
     repositories {
         google()
+        maven { url 'https://maven.google.com' }
         jcenter()
-        
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.1'
+        classpath 'com.android.tools.build:gradle:3.3.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "guru.stefma.bintrayrelease:bintrayrelease:$bintray_version"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version"
@@ -23,6 +24,9 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://maven.google.com' }
+        maven { url "https://jitpack.io" }
+        mavenCentral()
         
     }
 

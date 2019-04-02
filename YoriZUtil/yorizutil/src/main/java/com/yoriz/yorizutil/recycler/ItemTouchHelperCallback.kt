@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 /**
  * Created by yoriz
  * on 2018/12/18 3:11 PM.
+ *
+ * 各种滑动的
  */
 class ItemTouchHelperCallback(private val moveAndSwipedOnListener: OnMoveAndSwipedListener, private val isAction: Boolean) : ItemTouchHelper.Callback() {
 

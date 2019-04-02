@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">YoriZUtil</string>
+    <string name="error_text_name">ErrorMessage</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
+</resources>
