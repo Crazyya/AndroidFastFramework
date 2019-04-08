@@ -13,7 +13,7 @@ import androidx.core.content.ContextCompat
  * Created by yoriz
  * on 2018/12/18 12:25 PM.
  */
-abstract class BaseActivity : AppCompatActivity(), ActivityGenericView {
+abstract class BaseActivity : AppCompatActivity(){
 
     companion object {
         // 应用退出用的广播标签

@@ -4,11 +4,10 @@ import com.yoriz.yorizutil.YoriToast
 
 /**
  * Created by yoriz
- * on 2018/12/18 11:43 AM.
- * Activity通用接口，有用到就传到presenter内，没有就不管(很愚蠢但我想不到办法分离
+ * on 2019/4/8 3:35 PM.
+ * View的通用接口方法
  */
-interface ActivityGenericView {
-
+interface BaseView {
     /**
      * 请求成功
      */
@@ -17,7 +16,7 @@ interface ActivityGenericView {
     /**
      * 请求失败
      */
-    fun <T> requestFail(responseData:T){}
+    fun <T> requestFail(responseData: T) {}
 
     /**
      * 调用toast工具弹提示
@@ -35,5 +34,4 @@ interface ActivityGenericView {
      * 隐藏loading
      */
     fun hideLoading() {}
-
 }
