@@ -47,7 +47,7 @@ class UniversalAdapter<T> : RecyclerView.Adapter<UniversalViewHolder> {
     }
 
     override fun onBindViewHolder(holder: UniversalViewHolder, position: Int) {
-        mOnBindInterface.onBindData(mData[position], holder, getItemViewType(position))
+        mOnBindInterface.onBindData(mData[position], holder, getItemViewType(position), position)
     }
 
 }

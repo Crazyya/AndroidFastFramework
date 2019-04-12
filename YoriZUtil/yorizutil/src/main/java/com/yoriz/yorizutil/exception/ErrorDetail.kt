@@ -1,7 +1,7 @@
 package com.yoriz.yorizutil.exception
 
 import android.app.Activity
-import com.yoriz.yorizutil.BaseApplication
+import android.content.Context
 import java.io.ByteArrayOutputStream
 
 /**
@@ -15,31 +15,30 @@ object ErrorDetail {
      *
      * @return 字符串异常信息
      */
-    val errorTxtMessage: String
-        get() {
-            var result = ""
-            try {
-                val inputStream = BaseApplication.instance.applicationContext.openFileInput(GlobalException.crashFileName)
-                val bytes = ByteArray(1024)
-                val arrayOutputStream = ByteArrayOutputStream()
-                while (inputStream.read(bytes) != -1) {
-                    arrayOutputStream.write(bytes, 0, bytes.size)
-                }
-                inputStream.close()
-                arrayOutputStream.close()
-                result = String(arrayOutputStream.toByteArray())
-            } catch (ignored: Exception) {
+    fun getErrorTXTMessage(context: Context): String {
+        var result = ""
+        try {
+            val inputStream = context.applicationContext.openFileInput(GlobalException.crashFileName)
+            val bytes = ByteArray(1024)
+            val arrayOutputStream = ByteArrayOutputStream()
+            while (inputStream.read(bytes) != -1) {
+                arrayOutputStream.write(bytes, 0, bytes.size)
             }
-
-            return result
+            inputStream.close()
+            arrayOutputStream.close()
+            result = String(arrayOutputStream.toByteArray())
+        } catch (ignored: Exception) {
         }
+
+        return result
+    }
 
     /**
      * 清空txt文件内容
      */
-    fun clearErrorTxtMessage() {
+    fun clearErrorTxtMessage(context: Context) {
         try {
-            val outputStream = BaseApplication.instance.applicationContext.openFileOutput(GlobalException.crashFileName, Activity.MODE_PRIVATE)
+            val outputStream = context.applicationContext.openFileOutput(GlobalException.crashFileName, Activity.MODE_PRIVATE)
             outputStream.write("".toByteArray())
             outputStream.flush()
             outputStream.close()

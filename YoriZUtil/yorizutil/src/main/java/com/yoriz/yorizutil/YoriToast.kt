@@ -1,6 +1,7 @@
 package com.yoriz.yorizutil
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
@@ -15,9 +16,9 @@ object YoriToast {
 
     @SuppressLint("ShowToast")
     @JvmStatic
-    fun showShortToast(msg: String) {
+    fun showShortToast(context: Context, msg: String) {
         if (toast == null) {
-            toast = Toast.makeText(BaseApplication.instance, null, Toast.LENGTH_SHORT)
+            toast = Toast.makeText(context, null, Toast.LENGTH_SHORT)
         }
         toast!!.setText(msg)
         toast!!.duration = Toast.LENGTH_SHORT
@@ -27,9 +28,9 @@ object YoriToast {
 
     @SuppressLint("ShowToast")
     @JvmStatic
-    fun showLongToast(msg: String) {
+    fun showLongToast(context: Context, msg: String) {
         if (toast == null) {
-            toast = Toast.makeText(BaseApplication.instance, null, Toast.LENGTH_LONG)
+            toast = Toast.makeText(context, null, Toast.LENGTH_LONG)
         }
         toast!!.setText(msg)
         toast!!.duration = Toast.LENGTH_SHORT

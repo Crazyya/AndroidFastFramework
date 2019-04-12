@@ -1,8 +1,9 @@
 package com.yoriz.yorizutil.exception
 
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.os.Environment
-import com.yoriz.yorizutil.BaseApplication
 import com.yoriz.yorizutil.R
 import java.io.PrintWriter
 import java.io.StringWriter
@@ -12,22 +13,30 @@ import java.io.StringWriter
  * on 2018/12/18 2:52 PM.
  *
  * 错误处理类，所有异常信息会写成文本
+ * 在application中Thread.setDefaultUncaughtExceptionHandler(GlobalException.instance(this))
  */
-class GlobalException private constructor() : Thread.UncaughtExceptionHandler {
+class GlobalException private constructor(private val context: Context) : Thread.UncaughtExceptionHandler {
 
     private val mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler()
 
+    init {
+        crashFileName = "${context.getString(R.string.error_text_name)}.txt"
+    }
+
     companion object {
         @JvmStatic
-        val crashFileName = "${BaseApplication.instance.getString(R.string.error_text_name)}.txt"
+        var crashFileName = ""
+            private set
 
+        //这里持有的是applicationContext所以不用在意内存泄漏问题
+        @SuppressLint("StaticFieldLeak")
         private var instance: GlobalException? = null
 
-        fun instance(): GlobalException {
+        fun instance(context: Context): GlobalException {
             if (instance == null) {
                 synchronized(GlobalException::class.java) {
                     if (instance == null) {
-                        instance = GlobalException()
+                        instance = GlobalException(context.applicationContext)
                     }
                 }
             }
@@ -71,7 +80,7 @@ class GlobalException private constructor() : Thread.UncaughtExceptionHandler {
             ex.printStackTrace(printWriter)
             printWriter.close()
             val result = writer.toString()
-            val outputStream = BaseApplication.instance.applicationContext.openFileOutput(crashFileName, Activity.MODE_APPEND)
+            val outputStream = context.openFileOutput(crashFileName, Activity.MODE_APPEND)
             outputStream.write(result.toByteArray())
             outputStream.flush()
             outputStream.close()

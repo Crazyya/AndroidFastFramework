@@ -1,5 +1,6 @@
 package com.yoriz.yorizutil.mvp
 
+import android.content.Context
 import com.yoriz.yorizutil.YoriToast
 
 /**
@@ -21,8 +22,8 @@ interface BaseView {
     /**
      * 调用toast工具弹提示
      */
-    fun showPrompt(msg: String) {
-        YoriToast.showShortToast(msg)
+    fun showPrompt(context: Context, msg: String) {
+        YoriToast.showShortToast(context, msg)
     }
 
     /**

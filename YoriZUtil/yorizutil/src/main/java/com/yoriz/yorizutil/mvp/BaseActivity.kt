@@ -8,6 +8,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 /**
  * Created by yoriz
@@ -64,10 +67,10 @@ abstract class BaseActivity : AppCompatActivity(){
         super.onStart()
         // 每次进入应用都有0.8s时间后才允许退出
         isBack = false
-        Thread(Runnable {
-            Thread.sleep(800)
+        GlobalScope.launch {
+            delay(800)
             isBack = true
-        }).start()
+        }
         super.onStart()
     }
 

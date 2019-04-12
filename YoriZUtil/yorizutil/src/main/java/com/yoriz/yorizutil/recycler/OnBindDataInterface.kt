@@ -10,7 +10,7 @@ interface OnBindDataInterface<T> {
     /**
      * 把数据绑定到viewHolder的方法
      */
-    fun onBindData(model: T, viewHolder: UniversalViewHolder, viewType: Int)
+    fun onBindData(model: T, viewHolder: UniversalViewHolder, viewType: Int, position:Int)
 
     /**
      * 得到当前viewHolder的layoutId
