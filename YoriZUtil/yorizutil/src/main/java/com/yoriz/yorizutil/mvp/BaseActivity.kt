@@ -8,15 +8,14 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import kotlin.coroutines.CoroutineContext
 
 /**
  * Created by yoriz
  * on 2018/12/18 12:25 PM.
  */
-abstract class BaseActivity : AppCompatActivity(){
+abstract class BaseActivity : AppCompatActivity(), CoroutineScope {
 
     companion object {
         // 应用退出用的广播标签
@@ -33,6 +32,12 @@ abstract class BaseActivity : AppCompatActivity(){
             }
         }
     }
+
+    private val job = Job()
+
+    // 协程的上下文
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main + job
 
     // 使用户不能超速进入返回，跳转动画没做完就返回次数多了视觉上会觉得卡的
     private var isBack = false
@@ -67,7 +72,7 @@ abstract class BaseActivity : AppCompatActivity(){
         super.onStart()
         // 每次进入应用都有0.8s时间后才允许退出
         isBack = false
-        GlobalScope.launch {
+        launch {
             delay(800)
             isBack = true
         }
@@ -81,6 +86,7 @@ abstract class BaseActivity : AppCompatActivity(){
     }
 
     override fun onDestroy() {
+        job.cancel()
         // 释放广播监听
         unregisterReceiver(exitBroadcastReceiver)
         super.onDestroy()
