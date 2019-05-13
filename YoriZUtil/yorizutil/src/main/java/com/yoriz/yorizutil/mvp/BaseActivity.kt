@@ -33,7 +33,7 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope {
         }
     }
 
-    private val job = Job()
+    protected val job = Job()
 
     // 协程的上下文
     override val coroutineContext: CoroutineContext

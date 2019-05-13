@@ -24,10 +24,8 @@ abstract class MVPActivity : BaseActivity() {
     }
 
     override fun onDestroy() {
+        basePresenter?.onDestroy()
+        basePresenter = null
         super.onDestroy()
-        if (basePresenter != null) {
-            basePresenter!!.onDestroy()
-            basePresenter = null
-        }
     }
 }

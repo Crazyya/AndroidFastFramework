@@ -6,7 +6,7 @@ package com.yoriz.yorizutil.mvp
  */
 interface BasePresenter {
     /**
-     * 需要在此处清空持有的activity的view
+     * 需要在此处清空持有的view
      * 在5.0后调用System.gc()已无效，因此没必要调用
      * 如果非要强行调用gc回收：
      * 1.System.gc()和System.runFinalization()同时调用

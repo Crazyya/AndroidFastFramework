@@ -11,7 +11,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.2'
+        classpath 'com.android.tools.build:gradle:3.4.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "guru.stefma.bintrayrelease:bintrayrelease:$bintray_version"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version"

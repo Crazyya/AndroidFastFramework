@@ -9,7 +9,7 @@ import kotlin.coroutines.CoroutineContext
  * Created by yoriz
  * on 2019/4/12 3:41 PM.
  */
-abstract class CoroutinesModel : CoroutineScope {
+class CoroutinesModel : CoroutineScope {
     var job: Job = Job()
 
     override val coroutineContext: CoroutineContext

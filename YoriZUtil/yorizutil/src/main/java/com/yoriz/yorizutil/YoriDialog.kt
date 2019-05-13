@@ -10,8 +10,8 @@ import android.widget.Button
  * Created by yoriz
  * on 2019/4/1 12:12 PM.
  *
- * 采用伪建造者模式的Dialog
- * 全面支持Kotlin高级函数写法
+ * 伪建造者模式的Dialog
+ * 支持Kotlin函数写法
  * 默认只监听Button类型控件点击事件
  * 如有其他点击需监听自行在setViewDetail中声明
  */
@@ -89,6 +89,7 @@ class YoriDialog : View.OnClickListener, YoriDialogManage {
             builder.setView(dialogView)
             builder.setCancelable(isCancel)
             builder.create()
+            builder.show()
         }
     }
 

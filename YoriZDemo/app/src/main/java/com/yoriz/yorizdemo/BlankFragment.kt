@@ -1,6 +1,8 @@
 package com.yoriz.yorizdemo
 
 import android.annotation.SuppressLint
+import android.content.ComponentName
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -51,6 +53,45 @@ class BlankFragment : Fragment(), AdapterView.OnItemClickListener {
             }
         }
         view.list.onItemClickListener = this
+        view.button.setOnClickListener {
+            switchIcon()
+        }
         return view
+    }
+
+    private fun switchIcon() {
+        try {
+            val one = "com.yoriz.yorizdemo.MainActivity"
+            val two = "com.yoriz.yorizdemo.StartTwoActivity"
+            val pm = context!!.packageManager
+            val normalComponentName = ComponentName(this.context!!, one)
+            val actComponentName = ComponentName(context!!, two)
+            if (pm.getComponentEnabledSetting(normalComponentName) == PackageManager.COMPONENT_ENABLED_STATE_ENABLED) {
+                pm.setComponentEnabledSetting(
+                    normalComponentName,
+                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                    PackageManager.DONT_KILL_APP
+                )
+                pm.setComponentEnabledSetting(
+                    actComponentName,
+                    PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                    0
+                )
+            } else {
+                pm.setComponentEnabledSetting(
+                    actComponentName,
+                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                    PackageManager.DONT_KILL_APP
+                )
+                pm.setComponentEnabledSetting(
+                    normalComponentName,
+                    PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                    0
+                )
+            }
+
+        } catch (e: Exception) {
+
+        }
     }
 }
