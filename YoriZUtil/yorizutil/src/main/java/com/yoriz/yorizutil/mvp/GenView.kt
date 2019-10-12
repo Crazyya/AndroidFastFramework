@@ -1,7 +1,7 @@
 package com.yoriz.yorizutil.mvp
 
 import android.content.Context
-import com.yoriz.yorizutil.YoriToast
+import com.yoriz.yorizutil.widget.YoriToast
 
 /**
  * Created by yoriz

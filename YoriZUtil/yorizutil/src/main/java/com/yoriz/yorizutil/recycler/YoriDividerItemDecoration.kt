@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,7 +19,11 @@ private const val HORIZONTAL_LIST = LinearLayoutManager.HORIZONTAL
 private const val VERTICAL_LIST = LinearLayoutManager.VERTICAL
 class YoriDividerItemDecoration(private val mContext: Context, orientation: Int) : RecyclerView.ItemDecoration() {
 
-    private var mDivider: Drawable = mContext.resources.getDrawable(R.drawable.divider, null)
+    private var mDivider: Drawable = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        mContext.resources.getDrawable(R.drawable.divider, null)
+    } else {
+        mContext.resources.getDrawable(R.drawable.divider)
+    }
     private var mOrientation: Int = 0
 
     init {
@@ -31,7 +36,11 @@ class YoriDividerItemDecoration(private val mContext: Context, orientation: Int)
      * @param resId drawable资源,可以使自定义的shape文件
      */
     fun setDivider(resId: Int) {
-        mDivider = mContext.resources.getDrawable(resId, null)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mDivider = mContext.resources.getDrawable(resId, null)
+        } else {
+            mContext.resources.getDrawable(R.drawable.divider)
+        }
     }
 
     private fun setOrientation(orientation: Int) {

@@ -3,7 +3,8 @@ package com.yoriz.yorizutil.glide
 import android.content.Context
 import android.graphics.Bitmap
 import android.widget.ImageView
-import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.yoriz.yorizutil.R
 
@@ -25,6 +26,7 @@ object GlideUtil {
      * 整个应用只需执行一次
      * 写入等待图，如果不写入到时候是默认的
      */
+    @JvmStatic
     fun setFinalLoadingImg(context: Context, resource: Int) {
         val sp = context.getSharedPreferences(GLIDE_SP_NAME, Context.MODE_PRIVATE)
         val spEdit = sp.edit()
@@ -36,6 +38,7 @@ object GlideUtil {
      * 整个应用只需执行一次
      * 写入异常图，如果不写入到时候是默认的
      */
+    @JvmStatic
     fun setFinalErrorImg(context: Context, resource: Int) {
         val sp = context.getSharedPreferences(GLIDE_SP_NAME, Context.MODE_PRIVATE)
         val spEdit = sp.edit()
@@ -68,6 +71,7 @@ object GlideUtil {
         return RequestOptions()
                 .placeholder(loadImg)
                 .error(errImg)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
     }
 
     /**
@@ -75,11 +79,11 @@ object GlideUtil {
      * 统一说明去掉过场动画是因为显示预载图片后会有缓存，使用过场动画会导致预载图片不消失
      * @param option:可以为空，如过为空就为预设的加载图和异常图
      */
-    fun loadImg(context: Context, url: String, img: ImageView, option: RequestOptions?) {
-        val requestOptions = option ?: getGlideOptions(context)
-        Glide.with(context)
+    @JvmStatic
+    fun loadImg(glide: RequestManager, applicationContext: Context, url: String, img: ImageView, option: RequestOptions = getGlideOptions(applicationContext)) {
+        glide
                 .load(url)
-                .apply(requestOptions)
+                .apply(option)
                 .into(img)
     }
 
@@ -87,11 +91,11 @@ object GlideUtil {
      * 加载int类型资源图片
      * @param option:可以为空，如过为空就为预设的加载图和异常图
      */
-    fun loadImg(context: Context, url: Int, img: ImageView, option: RequestOptions?) {
-        val requestOptions = option ?: getGlideOptions(context)
-        Glide.with(context)
+    @JvmStatic
+    fun loadImg(glide: RequestManager, applicationContext: Context, url: Int, img: ImageView, option: RequestOptions = getGlideOptions(applicationContext)) {
+        glide
                 .load(url)
-                .apply(requestOptions)
+                .apply(option)
 //                .transition(DrawableTransitionOptions.withCrossFade())
                 .into(img)
     }
@@ -100,13 +104,25 @@ object GlideUtil {
      * 加载byte图片
      * @param option:可以为空，如过为空就为预设的加载图和异常图
      */
-    fun loadImg(context: Context, data: ByteArray, img: ImageView, option: RequestOptions?) {
-        val requestOptions = option ?: getGlideOptions(context)
-        Glide.with(context)
+    @JvmStatic
+    fun loadImg(glide: RequestManager, applicationContext: Context, data: ByteArray, img: ImageView, option: RequestOptions = getGlideOptions(applicationContext)) {
+        glide
                 .load(data)
-                .apply(requestOptions)
+                .apply(option)
 //                .transition(DrawableTransitionOptions.withCrossFade())
                 .into(img)
     }
 
+    /**
+     * 加载bitmap图片
+     * @param option:可以为空，如过为空就为预设的加载图和异常图
+     */
+    @JvmStatic
+    fun loadImg(glide: RequestManager, applicationContext: Context, data: Bitmap, img: ImageView, option: RequestOptions = getGlideOptions(applicationContext)) {
+        glide
+                .load(data)
+                .apply(option)
+//                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(img)
+    }
 }

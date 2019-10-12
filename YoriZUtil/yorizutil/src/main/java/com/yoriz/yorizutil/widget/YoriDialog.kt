@@ -1,4 +1,4 @@
-package com.yoriz.yorizutil
+package com.yoriz.yorizutil.widget
 
 import android.app.AlertDialog
 import android.content.Context

@@ -1,6 +1,7 @@
 package com.yoriz.yorizutil.mvp
 
 import android.os.Bundle
+import com.yoriz.yorizutil.BaseActivity
 
 /**
  * Created by yoriz

@@ -1,4 +1,4 @@
-package com.yoriz.yorizutil
+package com.yoriz.yorizutil.widget
 
 import android.annotation.SuppressLint
 import android.content.Context

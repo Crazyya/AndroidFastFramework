@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
+import kotlin.math.min
 
 /**
  * Created by yoriz
@@ -118,6 +119,7 @@ class YoriZWeatherView : View {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+
         when (mWeatherStyle) {
             STYLE_CLOUD -> {
                 initCloudOrRainPath()
@@ -180,7 +182,7 @@ class YoriZWeatherView : View {
 
     private fun initSunOrCloudPath() {
         mSunPath.reset()
-        val size = Math.min(w, h)
+        val size = min(w, h)
         val sunRadius = size / 4f
         val sunX = if (mWeatherStyle == STYLE_SUN_CLOUD) {
             size / 2f - (size / 2f) / 5f
@@ -231,7 +233,7 @@ class YoriZWeatherView : View {
 
     private fun initCloudOrRainPath() {
         mCloudPath.reset()
-        val size = Math.min(w, h)
+        val size = min(w, h)
         val cloudWidth = size.toFloat() * 0.9f
         val cloudBottomHeight = cloudWidth / 3f
         val cloudEndX = (size - cloudWidth) / 2 + cloudWidth

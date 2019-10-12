@@ -1,9 +1,10 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
-/*apply plugin: "guru.stefma.bintrayrelease"
+apply plugin: "guru.stefma.bintrayrelease"
 
-version = "1.1.5"
+
+version = "1.2.7"
 group = "com.yoriz"
 androidArtifact {
     artifactId = "bintrayrelease"
@@ -22,13 +23,13 @@ dokka {
     outputDirectory = "$rootDir/docs"
     skipEmptyPackages = true
     noStdlibLink = true
-}*/
+}
 
 android {
     compileSdkVersion 28
 
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion 14
         targetSdkVersion 28
         versionCode 1
         versionName "1.0.0"
@@ -39,10 +40,11 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0-alpha05'
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     // Glide图形加载
-    api 'com.github.bumptech.glide:glide:4.7.1'
+    api 'com.github.bumptech.glide:glide:4.9.0'
 }
 repositories {
     mavenCentral()
