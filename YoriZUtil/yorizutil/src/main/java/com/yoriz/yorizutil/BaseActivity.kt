@@ -33,10 +33,6 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
         }
     }
 
-    fun getScop(): CoroutineScope {
-        return this
-    }
-
     // 使用户不能超速进入返回，跳转动画没做完就返回次数多了视觉上会觉得卡的
     private var isBack = false
 
@@ -94,7 +90,10 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
     }
 
     override fun onDestroy() {
-        cancel()
+        //这里会出现一个取消异常，资料确认是取消手段，加个catch捕获了，正确应该捕获CancellationException,这里直接用这个了
+        try{
+            cancel()
+        }catch (e:Exception){}
         // 释放广播监听
         unregisterReceiver(exitBroadcastReceiver)
         super.onDestroy()

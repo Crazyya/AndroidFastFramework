@@ -2,6 +2,7 @@ package com.yoriz.yorizutil.glide
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -119,6 +120,19 @@ object GlideUtil {
      */
     @JvmStatic
     fun loadImg(glide: RequestManager, applicationContext: Context, data: Bitmap, img: ImageView, option: RequestOptions = getGlideOptions(applicationContext)) {
+        glide
+                .load(data)
+                .apply(option)
+//                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(img)
+    }
+
+    /**
+     * 加载drawable图片
+     * @param option:可以为空，如过为空就为预设的加载图和异常图
+     */
+    @JvmStatic
+    fun loadImg(glide: RequestManager, applicationContext: Context, data: Drawable, img: ImageView, option: RequestOptions = getGlideOptions(applicationContext)) {
         glide
                 .load(data)
                 .apply(option)

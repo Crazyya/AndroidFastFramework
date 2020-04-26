@@ -1,5 +1,6 @@
 package com.yoriz.yorizutil.mvvm
 
+import android.app.Dialog
 import com.yoriz.yorizutil.BaseActivity
 import com.yoriz.yorizutil.widget.YoriLoadingDialog
 
@@ -11,7 +12,7 @@ abstract class VMBaseActivity<VM : BaseViewModel> : BaseActivity() {
 
     protected abstract fun initViewModel(): VM
 
-    protected val loadingDialog: YoriLoadingDialog by lazy {
+    protected val loadingDialog: Dialog? by lazy {
         YoriLoadingDialog(this)
     }
 
@@ -22,20 +23,20 @@ abstract class VMBaseActivity<VM : BaseViewModel> : BaseActivity() {
     override fun initCreate() {
         vm.getShowDialog({ lifecycle }, {
             if (it) {
-                loadingDialog.show()
+                loadingDialog?.show()
             } else {
-                loadingDialog.dismiss()
+                loadingDialog?.dismiss()
             }
         })
         vm.getError({ lifecycle }, {
-            showError(it)
+            showError(it.error, it.func)
         })
         vm.getMsg({ lifecycle }, {
             showMsg(it)
         })
     }
 
-    protected abstract fun showError(data: Any)
+    protected abstract fun showError(data: Any, func: () -> Unit = {})
 
     protected abstract fun showMsg(data: Any)
 }

@@ -18,7 +18,7 @@ class YoriLoadingDialog(context: Context) : Dialog(context, R.style.YoriLoadingD
     init {
         setCanceledOnTouchOutside(false)
         setContentView(R.layout.dialog_loading)
-        Glide.with(context).load(R.drawable.ic_nwui_loading).apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE)).into(loading_img)
+        Glide.with(context).load(R.mipmap.ic_yori_loading).apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE)).into(loading_img)
         val lp = window?.attributes?.apply {
             width = DensityUtil.dip2px(context, 250f)
             height = DensityUtil.dip2px(context, 150f)
