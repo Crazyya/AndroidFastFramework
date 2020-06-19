@@ -43,6 +43,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
     // Glide图形加载
     api 'com.github.bumptech.glide:glide:4.9.0'
 }
