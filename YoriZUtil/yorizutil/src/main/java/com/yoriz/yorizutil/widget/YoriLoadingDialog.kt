@@ -14,11 +14,15 @@ import kotlinx.android.synthetic.main.dialog_loading.*
  * Created by yoriz
  * on 2019-09-19 15:33.
  */
-class YoriLoadingDialog(context: Context) : Dialog(context, R.style.YoriLoadingDialog) {
-    init {
+class YoriLoadingDialog : Dialog {
+
+    constructor(context: Context) : this(context, null)
+
+    constructor(context: Context, loadingGif: Int?) : super(context, R.style.YoriLoadingDialog) {
         setCanceledOnTouchOutside(false)
         setContentView(R.layout.dialog_loading)
-        Glide.with(context).load(R.mipmap.ic_yori_loading).apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE)).into(loading_img)
+        Glide.with(context).load(loadingGif
+                ?: R.mipmap.ic_yori_loading).apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE)).into(loading_img)
         val lp = window?.attributes?.apply {
             width = DensityUtil.dip2px(context, 250f)
             height = DensityUtil.dip2px(context, 150f)
